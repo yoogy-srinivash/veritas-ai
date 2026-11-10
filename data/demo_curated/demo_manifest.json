@@ -1,0 +1,222 @@
+[
+  {
+    "id": "demo-001",
+    "text": "NASA James Webb Space Telescope captures deepest infrared image of galaxy cluster SMACS 0723.",
+    "image_file": "jwst_smacs_0723.jpg",
+    "ground_truth": "REAL",
+    "category": "Science & Astronomy",
+    "source_url": "https://images.nasa.gov/details/PIA25324",
+    "license": "Public Domain (NASA Guidelines)",
+    "attribution": "NASA, ESA, CSA, STScI",
+    "description": "Genuine astronomical observation of the early universe from the JWST NIRCam instrument."
+  },
+  {
+    "id": "demo-002",
+    "text": "Apollo 11 astronaut Buzz Aldrin poses for historic photograph beside the US flag on lunar surface.",
+    "image_file": "apollo_11_aldrin.jpg",
+    "ground_truth": "REAL",
+    "category": "History & Exploration",
+    "source_url": "https://images.nasa.gov/details/as11-40-5874",
+    "license": "Public Domain (NASA Guidelines)",
+    "attribution": "NASA / Neil A. Armstrong",
+    "description": "Authentic Apollo 11 lunar landing mission documentation, July 20, 1969."
+  },
+  {
+    "id": "demo-003",
+    "text": "Eiffel Tower in Paris illuminated with golden sparklers during annual Bastille Day celebration.",
+    "image_file": "eiffel_bastille_day.jpg",
+    "ground_truth": "REAL",
+    "category": "Culture & Events",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Eiffel_Tower_Bastille_Day.jpg",
+    "license": "CC-BY-SA 4.0",
+    "attribution": "Wikimedia Commons / Yann Caradec",
+    "description": "Genuine photograph of Parisian Bastille Day fireworks and illuminations."
+  },
+  {
+    "id": "demo-004",
+    "text": "Volcanic eruption at Fagradalsfjall Iceland produces slow-moving basaltic lava flows across valley floor.",
+    "image_file": "iceland_volcano_eruption.jpg",
+    "ground_truth": "REAL",
+    "category": "Earth Science & Geology",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Fagradalsfjall_Eruption_2021.jpg",
+    "license": "CC-BY-SA 4.0",
+    "attribution": "Wikimedia Commons / Berserkur",
+    "description": "Documented 2021 volcanic fissure eruption on Reykjanes Peninsula, Iceland."
+  },
+  {
+    "id": "demo-005",
+    "text": "Hubble Space Telescope captures stunning ultraviolet and visible light portrait of the Eagle Nebula Pillars of Creation.",
+    "image_file": "hubble_pillars_of_creation.jpg",
+    "ground_truth": "REAL",
+    "category": "Science & Astronomy",
+    "source_url": "https://images.nasa.gov/details/GSFC_20171208_Archive_e001435",
+    "license": "Public Domain (NASA Guidelines)",
+    "attribution": "NASA, ESA, and the Hubble Heritage Team (STScI/AURA)",
+    "description": "Authentic interstellar star-forming molecular hydrogen pillars in Serpens constellation."
+  },
+  {
+    "id": "demo-006",
+    "text": "United Nations General Assembly convenes in New York for high-level general debate on climate security.",
+    "image_file": "un_general_assembly.jpg",
+    "ground_truth": "REAL",
+    "category": "Politics & Governance",
+    "source_url": "https://commons.wikimedia.org/wiki/File:UN_General_Assembly_Hall.jpg",
+    "license": "CC-BY 3.0 IGO",
+    "attribution": "United Nations Photo / Caren Firsing",
+    "description": "Authentic photography of the UN General Assembly Hall during member state deliberations."
+  },
+  {
+    "id": "demo-007",
+    "text": "World Health Organization announces drinking boiled lemon and garlic tea completely eradicates influenza within 24 hours.",
+    "image_file": "lemon_tea_remedy.jpg",
+    "ground_truth": "FAKE",
+    "category": "Health Misinformation",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Lemon_tea_cup.jpg",
+    "license": "CC0 1.0 Universal (Public Domain)",
+    "attribution": "Public Domain Archive",
+    "description": "Fabricated medical cure attribution paired with benign stock photo of lemon tea."
+  },
+  {
+    "id": "demo-008",
+    "text": "NASA discovers secret city on dark side of the moon built from crystalline geometric pyramids.",
+    "image_file": "moon_pyramid_fake.jpg",
+    "ground_truth": "FAKE",
+    "category": "Conspiracy & Pseudohistory",
+    "source_url": "https://images.nasa.gov/details/PIA13517",
+    "license": "Public Domain (Original Lunar Surface Data)",
+    "attribution": "NASA/GSFC/Arizona State University",
+    "description": "Sensationalized headline misrepresenting normal lunar crater elevation data."
+  },
+  {
+    "id": "demo-009",
+    "text": "Massive crowd fills streets of Tokyo in spontaneous demonstration against artificial intelligence regulations.",
+    "image_file": "tokyo_shibuya_crowd.jpg",
+    "ground_truth": "FAKE",
+    "category": "Out-of-Context Media",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Shibuya_Crossing_Tokyo_Night.jpg",
+    "license": "CC-BY-SA 4.0",
+    "attribution": "Wikimedia Commons / Shibuya Walkers",
+    "description": "Pre-pandemic tourist crossing photo falsely repurposed as political protest demonstration."
+  },
+  {
+    "id": "demo-010",
+    "text": "Scientists confirm newly discovered deep sea creature possesses biological wheels instead of fins.",
+    "image_file": "deep_sea_squid.jpg",
+    "ground_truth": "FAKE",
+    "category": "Pseudoscience Satire",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Promachoteuthis_sulcata_head.jpg",
+    "license": "CC-BY-SA 3.0",
+    "attribution": "C.F.E. Roper & M.J. Sweeney",
+    "description": "Unrelated cephalopod specimen photo matched with absurd biological claim."
+  },
+  {
+    "id": "demo-011",
+    "text": "Government institutes mandatory 15% luxury tax on personal smartphones running open-source operating systems.",
+    "image_file": "smartphone_payment.jpg",
+    "ground_truth": "FAKE",
+    "category": "Financial Hoax",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Contactless_Payment_Smartphone.jpg",
+    "license": "CC-BY 2.0",
+    "attribution": "Flickr / TechDaily",
+    "description": "Fabricated tax policy announcement paired with ordinary contactless payment photo."
+  },
+  {
+    "id": "demo-012",
+    "text": "Historic clock tower in Venice collapses into Grand Canal following overnight structural seismic tremor.",
+    "image_file": "venice_st_marks_campanile.jpg",
+    "ground_truth": "FAKE",
+    "category": "Disaster Hoax",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Campanile_di_San_Marco_Venezia.jpg",
+    "license": "CC-BY-SA 4.0",
+    "attribution": "Wikimedia Commons / Moroder",
+    "description": "False claim of destruction paired with standard archival tourist image of standing campanile."
+  },
+  {
+    "id": "demo-013",
+    "text": "International Space Station astronauts successfully cultivate fresh red romaine lettuce in orbital microgravity garden.",
+    "image_file": "iss_veggie_plant.jpg",
+    "ground_truth": "REAL",
+    "category": "Space Exploration",
+    "source_url": "https://images.nasa.gov/details/iss044e045576",
+    "license": "Public Domain (NASA Guidelines)",
+    "attribution": "NASA / Scott Kelly",
+    "description": "Authentic Veg-01 plant experiment conducted aboard the International Space Station."
+  },
+  {
+    "id": "demo-014",
+    "text": "Solar eclipse casts circular umbral shadow across the Pacific Ocean visible from high-altitude weather satellite.",
+    "image_file": "solar_eclipse_earth_view.jpg",
+    "ground_truth": "REAL",
+    "category": "Space & Earth Observation",
+    "source_url": "https://images.nasa.gov/details/GSFC_20171208_Archive_e001741",
+    "license": "Public Domain (NASA Guidelines)",
+    "attribution": "NASA Earth Observatory / NOAA GOES-16",
+    "description": "Authentic imagery of the Moon's shadow traveling across Earth during total solar eclipse."
+  },
+  {
+    "id": "demo-015",
+    "text": "Archaeologists discover perfectly preserved Roman mosaic floor underneath supermarket construction site in Verona.",
+    "image_file": "roman_mosaic_verona.jpg",
+    "ground_truth": "REAL",
+    "category": "Archaeology & History",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Roman_mosaic_Verona_discovery.jpg",
+    "license": "CC-BY-SA 4.0",
+    "attribution": "Soprintendenza Archeologia Belle Arti e Paesaggio di Verona",
+    "description": "Documented archaeological recovery of 3rd-century CE Roman domus floor in Negrar di Valpolicella."
+  },
+  {
+    "id": "demo-016",
+    "text": "Antarctic ice shelf breaks off into monolithic iceberg larger than the entire continent of Europe.",
+    "image_file": "iceberg_antarctica.jpg",
+    "ground_truth": "FAKE",
+    "category": "Climate Hyperbole",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Iceberg_in_Antarctic_Sound.jpg",
+    "license": "CC0 1.0 Universal (Public Domain)",
+    "attribution": "Brooke Cagle / Unsplash Archive",
+    "description": "Gross geographic exaggeration attached to standard tabular iceberg photo."
+  },
+  {
+    "id": "demo-017",
+    "text": "New state highway speed cameras secretly configured to scan driver DNA through vehicle windshields.",
+    "image_file": "highway_speed_camera.jpg",
+    "ground_truth": "FAKE",
+    "category": "Technological Conspiracy",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Speed_camera_on_motorway.jpg",
+    "license": "CC-BY 2.0",
+    "attribution": "Geograph Project / Robin Webster",
+    "description": "Technologically impossible surveillance claim attached to standard automated radar camera."
+  },
+  {
+    "id": "demo-018",
+    "text": "Marine biologists rescue entangled humpback whale off coastline using specialized cutting poles and satellite telemetry.",
+    "image_file": "whale_entanglement_rescue.jpg",
+    "ground_truth": "REAL",
+    "category": "Marine Biology & Conservation",
+    "source_url": "https://commons.wikimedia.org/wiki/File:NOAA_Disentanglement_Team.jpg",
+    "license": "Public Domain (NOAA Guidelines)",
+    "attribution": "NOAA Marine Mammal Health and Stranding Response Program",
+    "description": "Authorized disentanglement operation documented under NOAA Fisheries permit."
+  },
+  {
+    "id": "demo-019",
+    "text": "University physics lab creates perpetual motion machine that generates infinite clean energy from copper wire coils.",
+    "image_file": "physics_copper_coils.jpg",
+    "ground_truth": "FAKE",
+    "category": "Thermodynamic Hoax",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Tesla_coil_in_operation.jpg",
+    "license": "CC-BY-SA 3.0",
+    "attribution": "Wikimedia Commons / OneTesla",
+    "description": "Violation of first and second laws of thermodynamics paired with hobbyist Tesla coil photo."
+  },
+  {
+    "id": "demo-020",
+    "text": "Preserved specimen of the extinct thylacine (Tasmanian tiger) photographed in Australian museum natural history collection.",
+    "image_file": "thylacine_museum_specimen.jpg",
+    "ground_truth": "REAL",
+    "category": "Zoology & Extinction",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Thylacinus_cynocephalus_taxidermy.jpg",
+    "license": "CC-BY-SA 2.5",
+    "attribution": "Wikimedia Commons / Museum Victoria",
+    "description": "Authentic historical taxidermy mount of Thylacinus cynocephalus in museum archive."
+  }
+]
