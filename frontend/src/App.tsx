@@ -532,7 +532,7 @@ export default function App() {
                 Evaluating discrete candidate thresholds <code className="font-mono bg-white px-1 border rounded">[0.30, 0.40, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80]</code> on the <span className="font-medium text-slate-800">validation set</span> shows that the best-performing sampled thresholds for validation Macro F1 are <code className="font-mono bg-white px-1 border rounded">&tau; = 0.65</code> for DistilBERT (val Macro F1 = 74.91%) and <code className="font-mono bg-white px-1 border rounded">&tau; = 0.55</code> for ResNet50 (val Macro F1 = 68.73%).
               </p>
               <p className="text-slate-600 leading-relaxed">
-                In Day 3, <span className="font-medium text-slate-800">Temperature Scaling</span> (T*) calibrates continuous probability values (reducing ECE), while <span className="font-medium text-slate-800">Selective Classification</span> (&tau;*) establishes confidence-based abstention to <span className="font-semibold text-amber-700">UNCERTAIN</span>.
+                In Day 3, <span className="font-medium text-slate-800">Temperature Scaling</span> (T*) adjusts continuous probability magnitudes by minimizing validation NLL (subsequently evaluated via ECE and Brier score, with improvement not guaranteed), while <span className="font-medium text-slate-800">Selective Classification</span> (&tau;*) establishes confidence-based abstention to <span className="font-semibold text-amber-700">UNCERTAIN</span>.
               </p>
             </div>
           </div>

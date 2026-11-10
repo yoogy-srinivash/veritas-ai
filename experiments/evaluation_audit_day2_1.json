@@ -160,7 +160,7 @@
     },
     "evaluated_threshold_grid": [0.30, 0.40, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80],
     "threshold_optimality_scope": "Sampled empirical best on validation Macro F1 across discrete candidates; not a continuous global optimum.",
-    "uncertainty_decoupling": "Temperature scaling calibrates probability values (NLL minimization) without changing argmax rankings; binary decision thresholding selects the ROC operating cutoff; selective classification routes claims where max(P) < tau* to UNCERTAIN.",
+    "uncertainty_decoupling": "Temperature scaling adjusts predicted probability magnitudes by minimizing validation NLL (preserving argmax rankings under standard argmax); its calibration impact is subsequently evaluated by ECE and Brier score (improvements not guaranteed). Binary decision thresholding selects the ROC operating cutoff; selective classification routes claims where max(P) < tau* to UNCERTAIN.",
     "bias_causality": "Compound interaction of unimodal feature representation ambiguity (overlapping P(FAKE) distributions), training class ratio (2.08:1 FAKE), and rigid threshold placement at 0.50."
   }
 }
