@@ -125,21 +125,51 @@ def evaluate_model(model, dataloader, device) -> Tuple[Dict[str, Any], np.ndarra
 
     avg_loss = total_loss / len(all_labels)
     acc = accuracy_score(all_labels, all_preds)
-    prec = precision_score(all_labels, all_preds, zero_division=0)
-    rec = recall_score(all_labels, all_preds, zero_division=0)
-    f1 = f1_score(all_labels, all_preds, zero_division=0)
+
+    # Explicit macro metrics across both classes
+    macro_prec = precision_score(all_labels, all_preds, average="macro", zero_division=0)
+    macro_rec = recall_score(all_labels, all_preds, average="macro", zero_division=0)
+    macro_f1 = f1_score(all_labels, all_preds, average="macro", zero_division=0)
+    weighted_f1 = f1_score(all_labels, all_preds, average="weighted", zero_division=0)
+
+    # Class-specific metrics (Class 0: REAL, Class 1: FAKE)
+    real_prec = precision_score(all_labels, all_preds, pos_label=0, average="binary", zero_division=0)
+    real_rec = recall_score(all_labels, all_preds, pos_label=0, average="binary", zero_division=0)
+    real_f1 = f1_score(all_labels, all_preds, pos_label=0, average="binary", zero_division=0)
+
+    fake_prec = precision_score(all_labels, all_preds, pos_label=1, average="binary", zero_division=0)
+    fake_rec = recall_score(all_labels, all_preds, pos_label=1, average="binary", zero_division=0)
+    fake_f1 = f1_score(all_labels, all_preds, pos_label=1, average="binary", zero_division=0)
+
     try:
         roc_auc = roc_auc_score(all_labels, all_probs)
     except Exception:
         roc_auc = 0.5
 
+    # Specificity = TN / (TN + FP) = Recall of REAL (class 0)
+    # FPR = FP / (TN + FP) = 1 - Specificity
+    specificity = float(real_rec)
+    fpr = float(1.0 - specificity)
+
     metrics = {
         "loss": round(float(avg_loss), 4),
         "accuracy": round(float(acc), 4),
-        "precision": round(float(prec), 4),
-        "recall": round(float(rec), 4),
-        "f1_score": round(float(f1), 4),
+        "macro_precision": round(float(macro_prec), 4),
+        "macro_recall": round(float(macro_rec), 4),
+        "macro_f1": round(float(macro_f1), 4),
+        "weighted_f1": round(float(weighted_f1), 4),
+        "real_precision": round(float(real_prec), 4),
+        "real_recall": round(float(real_rec), 4),
+        "real_f1": round(float(real_f1), 4),
+        "fake_precision": round(float(fake_prec), 4),
+        "fake_recall": round(float(fake_rec), 4),
+        "fake_f1": round(float(fake_f1), 4),
+        "f1_score": round(float(macro_f1), 4),  # Standardized to Macro F1
+        "precision": round(float(macro_prec), 4),
+        "recall": round(float(macro_rec), 4),
         "roc_auc": round(float(roc_auc), 4),
+        "specificity": round(float(specificity), 4),
+        "false_positive_rate": round(float(fpr), 4)
     }
     return metrics, all_preds, all_labels
 

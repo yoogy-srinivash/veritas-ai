@@ -158,12 +158,12 @@ def run_preprocessing_and_splitting(seed: int = 42):
         "random_seed": seed,
         "split_ratio": {"train": 0.70, "validation": 0.15, "test": 0.15},
         "binary_mapping": {
-            "0": "REAL",
+            "0": "REAL (True News)",
             "1": "FAKE (Satire/Parody)",
             "2": "FAKE (Misleading Content)",
-            "3": "FAKE (Manipulated Content)",
+            "3": "FAKE (Imposter Content)",
             "4": "FAKE (False Connection)",
-            "5": "FAKE (Imposter Content)"
+            "5": "FAKE (Manipulated Content)"
         },
         "text_preprocessing": {
             "model_tokenizer": "distilbert-base-uncased",

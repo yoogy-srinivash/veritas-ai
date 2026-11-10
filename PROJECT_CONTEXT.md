@@ -84,17 +84,65 @@ Veritas-AI/
   - Test: 750 samples (243 REAL, 507 FAKE)
   - Leakage check: 0 cross-split sample overlap.
 
-### Baseline Evaluation (Untouched Test Set, N=750)
-*Evaluated on untouched test split after validation-based model selection.*
+### Baseline Evaluation (Untouched Test Set, N=750) — Audited Day 2.1
+*Evaluated on untouched test split following validation-based model selection. Class 1 (FAKE) is the positive class; Class 0 (REAL) is the negative class.*
 
-| Metric | DistilBERT (Text-only) | ResNet50 (Image-only) | Delta (Text vs Image) |
-| :--- | :--- | :--- | :--- |
-| **Accuracy** | **74.53%** | 70.00% | +4.53% |
-| **Macro F1** | **82.90%** | 80.55% | +2.35% |
-| **Precision** | **75.90%** | 71.69% | +4.21% |
-| **Recall** | 91.32% | **91.91%** | -0.59% |
-| **ROC-AUC** | **81.10%** | 73.76% | +7.34% |
-| **Confusion Matrix** | `[[96, 147], [44, 463]]` | `[[59, 184], [41, 466]]` | — |
+| Metric | DistilBERT (Text-only) | ResNet50 (Image-only) | Modality Delta | Definition / Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Accuracy** | **74.53%** | 70.00% | +4.53% | Overall correct fraction |
+| **Macro F1** | **66.52%** | 57.48% | +9.04% | Unweighted mean of REAL and FAKE F1 |
+| **Weighted F1** | **72.28%** | 65.60% | +6.68% | Support-weighted F1 across classes |
+| **FAKE F1 (Positive)** | **82.90%** | 80.55% | +2.35% | F1 score for class 1 (FAKE) |
+| **REAL F1 (Minority)** | **50.13%** | 34.40% | +15.73% | F1 score for class 0 (REAL) |
+| **Macro Precision** | **72.24%** | 65.35% | +6.89% | Unweighted mean precision |
+| **Macro Recall** | **65.41%** | 58.10% | +7.31% | Unweighted mean recall |
+| **FAKE Precision** | **75.90%** | 71.69% | +4.21% | Positive predictive value (PPV) |
+| **FAKE Recall** | 91.32% | **91.91%** | -0.59% | True positive rate (sensitivity) |
+| **REAL Precision** | **68.57%** | 59.00% | +9.57% | Negative predictive value (NPV) |
+| **REAL Recall (Specificity)** | **39.51%** | 24.28% | +15.23% | True negative rate (TNR) |
+| **False Positive Rate (FPR)** | **60.49%** | 75.72% | -15.23% | Fraction of REAL misclassified as FAKE |
+| **ROC-AUC** | **81.10%** | 73.76% | +7.34% | Threshold-independent ranking |
+| **Confusion Matrix** | `[[96, 147], [44, 463]]` | `[[59, 184], [41, 466]]` | — | `[[TN, FP], [FN, TP]]` |
+
+### Methodological & Experimental Findings (Audit Day 2.1)
+
+1. **Explanation of Macro F1 Discrepancy**:
+   - In the initial Day 2 evaluation, `f1_score()` from scikit-learn was invoked with default parameters (`average='binary'`, `pos_label=1`). Consequently, the reported 82.90% (DistilBERT) and 80.55% (ResNet50) corresponded strictly to the positive (FAKE) class F1 score rather than the unweighted macro average.
+   - The true unweighted Macro F1 scores are **66.52%** for DistilBERT and **57.48%** for ResNet50. Model checkpoints, weights, and raw predictions remain completely unaltered and authentic.
+
+2. **Threshold Search Methodology & Terminology**:
+   - In the validation sweep, decision thresholds were evaluated across the discrete 9-point grid:
+     $$\mathcal{T} = \{0.30, 0.40, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80\}$$
+     *(Note: grid spacing is non-uniform, with $\Delta \tau = 0.10$ in $[0.30, 0.50]$ and $\Delta \tau = 0.05$ in $[0.50, 0.80]$).*
+   - The values $\tau = 0.65$ (DistilBERT) and $\tau = 0.55$ (ResNet50) represent the **best-performing thresholds among the sampled candidate values in this discrete validation grid**, using validation Macro $F_1$ as the selection criterion.
+   - They must not be described as globally optimal; a continuous search or finer grid sweep could yield a different numerical threshold.
+
+3. **Decoupling Temperature Scaling, Binary Thresholding, and Selective Abstention**:
+   - These three distinct mathematical operations must remain strictly separated:
+     - **Temperature Scaling ($T^*$)**: Calibrates predicted probabilities via logit division $\hat{p} = \sigma(z / T^*)$ optimized by minimizing Negative Log-Likelihood (NLL) on the validation set. Because scalar division by $T^* > 0$ is strictly monotonic, it preserves logit rank ordering and preserves argmax predictions under standard argmax decision rules. However, it changes continuous probability magnitudes, directly improving Expected Calibration Error (ECE) and Brier score. *Temperature scaling alone does not guarantee improved classification accuracy or REAL recall.*
+     - **Binary Decision Threshold Selection ($\tau_{\text{binary}}$)**: Selects an operating cutoff along the ROC curve ($\hat{y} = 1 \iff \hat{p}_1 \ge \tau_{\text{binary}}$) to balance precision and recall.
+     - **Selective Classification ($\tau^*$)**: An abstention mechanism where predictions with maximum confidence below $\tau^*$ are returned as `UNCERTAIN` ($\max(\hat{p}_0, \hat{p}_1) < \tau^*$), trading coverage for selective accuracy.
+   - *Operational Interaction*: Applying binary thresholding ($\tau_{\text{binary}}$) and selective abstention ($\tau^*$) to *calibrated* probabilities ensures that thresholding decisions reflect empirically trustworthy confidence levels rather than uncalibrated overconfidence.
+
+4. **Multi-Factor Explanation of Prediction Skew**:
+   - The $2.08:1$ class prior (32.4% REAL, 67.6% FAKE) is a plausible contributor, but it is **not** the sole cause of the prediction bias toward FAKE.
+   - Analysis of validation probability distributions reveals **substantial representation overlap** in unimodal feature spaces:
+     - DistilBERT validation: REAL claims exhibit mean $P(\text{FAKE}) = 0.5246$ ($\text{median} = 0.5004, \sigma = 0.1917$).
+     - ResNet50 validation: REAL claims exhibit mean $P(\text{FAKE}) = 0.5496$ ($\text{median} = 0.5297, \sigma = 0.1562$).
+   - Because significant probability mass for genuine REAL claims falls at and above $0.50$, the high false-positive rate at $\tau = 0.50$ ($60.49\%$ for DistilBERT, $75.72\%$ for ResNet50) is the compound outcome of:
+     1. **Unimodal Feature Ambiguity**: Linguistic sensationalism in real Reddit headlines and meme-like aesthetics in real images create intrinsic overlap between classes.
+     2. **Prior Class Imbalance**: Training with unweighted cross-entropy slightly tilts gradient descent toward the majority class.
+     3. **Fixed Threshold Placement**: A default cutoff of $\tau = 0.50$ bisects the overlapping probability distribution of REAL claims, forcing ambiguous samples into FAKE classifications.
+
+5. **Authoritative Dataset Labeling Schema**:
+   - The original Fakeddit taxonomy (Nakamura et al., 2020) defines the 6-way categories as:
+     - **0**: True News
+     - **1**: Satire / Parody
+     - **2**: Misleading Content
+     - **3**: Imposter Content
+     - **4**: False Connection
+     - **5**: Manipulated Content
+   - In Veritas AI, collapsing classes 1–5 into `FAKE` is an **operational project definition** for automated content verification benchmarking, not a universal ontological definition of falsehood. Satire, parody, and humor operate rhetorically rather than fraudulently.
 
 *Key finding:* Text modality demonstrates significantly higher discriminative power than the visual modality on Fakeddit (ROC-AUC 81.10% vs 73.76%), motivating the multimodal fusion strategies implemented in Day 3.
 

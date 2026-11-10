@@ -78,6 +78,11 @@ export interface MetricsData {
     precision: number;
     recall: number;
     f1_score: number;
+    macro_f1?: number;
+    fake_f1?: number;
+    real_f1?: number;
+    specificity?: number;
+    false_positive_rate?: number;
     roc_auc: number;
     uncalibrated_ece: number;
     calibrated_ece: number;

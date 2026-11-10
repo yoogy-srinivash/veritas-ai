@@ -1,0 +1,166 @@
+{
+  "audit_timestamp": "2026-11-10 18:42:03",
+  "positive_class_definition": "Class 1: FAKE (Class 0: REAL is treated as negative/normal)",
+  "distilbert": {
+    "test_metrics": {
+      "accuracy": 0.7453,
+      "macro_precision": 0.7224,
+      "macro_recall": 0.6541,
+      "macro_f1": 0.6652,
+      "weighted_f1": 0.7228,
+      "real_precision": 0.6857,
+      "real_recall": 0.3951,
+      "real_f1": 0.5013,
+      "fake_precision": 0.759,
+      "fake_recall": 0.9132,
+      "fake_f1": 0.829,
+      "roc_auc": 0.811,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            96,
+            147
+          ],
+          [
+            44,
+            463
+          ]
+        ],
+        "labels": [
+          "REAL (0)",
+          "FAKE (1)"
+        ],
+        "TN": 96,
+        "FP": 147,
+        "FN": 44,
+        "TP": 463
+      },
+      "specificity": 0.3951,
+      "false_positive_rate": 0.6049
+    },
+    "validation_metrics": {
+      "accuracy": 0.7787,
+      "macro_precision": 0.7624,
+      "macro_recall": 0.7056,
+      "macro_f1": 0.7206,
+      "weighted_f1": 0.7654,
+      "real_precision": 0.7333,
+      "real_recall": 0.4979,
+      "real_f1": 0.5931,
+      "fake_precision": 0.7915,
+      "fake_recall": 0.9132,
+      "fake_f1": 0.848,
+      "roc_auc": 0.8384,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            121,
+            122
+          ],
+          [
+            44,
+            463
+          ]
+        ],
+        "labels": [
+          "REAL (0)",
+          "FAKE (1)"
+        ],
+        "TN": 121,
+        "FP": 122,
+        "FN": 44,
+        "TP": 463
+      },
+      "specificity": 0.4979,
+      "false_positive_rate": 0.5021
+    }
+  },
+  "resnet50": {
+    "test_metrics": {
+      "accuracy": 0.7,
+      "macro_precision": 0.6535,
+      "macro_recall": 0.581,
+      "macro_f1": 0.5748,
+      "weighted_f1": 0.656,
+      "real_precision": 0.59,
+      "real_recall": 0.2428,
+      "real_f1": 0.344,
+      "fake_precision": 0.7169,
+      "fake_recall": 0.9191,
+      "fake_f1": 0.8055,
+      "roc_auc": 0.7376,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            59,
+            184
+          ],
+          [
+            41,
+            466
+          ]
+        ],
+        "labels": [
+          "REAL (0)",
+          "FAKE (1)"
+        ],
+        "TN": 59,
+        "FP": 184,
+        "FN": 41,
+        "TP": 466
+      },
+      "specificity": 0.2428,
+      "false_positive_rate": 0.7572
+    },
+    "validation_metrics": {
+      "accuracy": 0.7227,
+      "macro_precision": 0.7096,
+      "macro_recall": 0.602,
+      "macro_f1": 0.5994,
+      "weighted_f1": 0.6776,
+      "real_precision": 0.6923,
+      "real_recall": 0.2593,
+      "real_f1": 0.3772,
+      "fake_precision": 0.7269,
+      "fake_recall": 0.9448,
+      "fake_f1": 0.8216,
+      "roc_auc": 0.7731,
+      "confusion_matrix": {
+        "matrix": [
+          [
+            63,
+            180
+          ],
+          [
+            28,
+            479
+          ]
+        ],
+        "labels": [
+          "REAL (0)",
+          "FAKE (1)"
+        ],
+        "TN": 63,
+        "FP": 180,
+        "FN": 28,
+        "TP": 479
+      },
+      "specificity": 0.2593,
+      "false_positive_rate": 0.7407
+    }
+  },
+  "methodological_notes": {
+    "fakeddit_6_way_schema": {
+      "0": "True News",
+      "1": "Satire / Parody",
+      "2": "Misleading Content",
+      "3": "Imposter Content",
+      "4": "False Connection",
+      "5": "Manipulated Content"
+    },
+    "evaluated_threshold_grid": [0.30, 0.40, 0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80],
+    "threshold_optimality_scope": "Sampled empirical best on validation Macro F1 across discrete candidates; not a continuous global optimum.",
+    "uncertainty_decoupling": "Temperature scaling calibrates probability values (NLL minimization) without changing argmax rankings; binary decision thresholding selects the ROC operating cutoff; selective classification routes claims where max(P) < tau* to UNCERTAIN.",
+    "bias_causality": "Compound interaction of unimodal feature representation ambiguity (overlapping P(FAKE) distributions), training class ratio (2.08:1 FAKE), and rigid threshold placement at 0.50."
+  }
+}
