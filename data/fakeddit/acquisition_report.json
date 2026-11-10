@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-11-10T12:19:55Z",
+  "dataset_source": "Fakeddit (ams-99/fakeddit_9k)",
+  "total_candidates_examined": 8646,
+  "filtering_reasons": {
+    "MISSING_IMAGE": 0,
+    "CORRUPT_IMAGE": 0,
+    "DIMENSION_TOO_SMALL": 74,
+    "RGB_CONVERSION_ERROR": 0,
+    "TEXT_TOO_SHORT": 437,
+    "DUPLICATE_TEXT": 5,
+    "DUPLICATE_IMAGE_HASH": 60,
+    "PASSED_VALIDATION": 8070
+  },
+  "physically_verified_available": 8070,
+  "final_benchmark_samples": 5000,
+  "binary_distribution": {
+    "REAL (0)": 1620,
+    "FAKE (1)": 3380
+  },
+  "binary_percentages": {
+    "REAL (0)": 32.4,
+    "FAKE (1)": 67.6
+  },
+  "six_way_distribution": {
+    "0": 1620,
+    "5": 904,
+    "3": 900,
+    "1": 803,
+    "2": 767,
+    "4": 6
+  },
+  "images_directory": "D:\\Veritas-AI\\data\\fakeddit\\images",
+  "manifest_file": "D:\\Veritas-AI\\data\\fakeddit\\acquisition_manifest.csv"
+}

@@ -59,6 +59,42 @@ Veritas-AI/
 │   ├── fakeddit/     # Strict benchmark splits (train, val, test) & verified images
 │   └── demo_curated/ # Isolated CC0/CC-BY demo samples for UI testing
 ├── docs/             # Academic paper draft, model cards, ablation results
+├── experiments/      # Structured experiment tracking records (JSON)
 ├── PROJECT_CONTEXT.md
 └── README.md
 ```
+
+---
+
+## 4. Current Milestone Status & Empirical Baseline Results
+
+### Dataset Acquisition (Fakeddit)
+- **Candidate Submissions Evaluated**: 8,646 candidates from `ams-99/fakeddit_9k`.
+- **Filtering Summary**:
+  - Image unreadable / corrupted: 0
+  - Dimension too small (< 64x64): 74
+  - Text too short (< 3 tokens): 437
+  - Duplicate text: 5
+  - Duplicate image hash: 60
+  - Passed verification: 8,070 physically valid samples (1,620 REAL, 6,450 FAKE).
+- **Benchmark Sample Selection**: 5,000 paired multimodal samples (1,620 REAL [32.4%], 3,380 FAKE [67.6%]).
+- **Split Distribution (Stratified 70/15/15, Seed 42)**:
+  - Training: 3,500 samples (1,134 REAL, 2,366 FAKE)
+  - Validation: 750 samples (243 REAL, 507 FAKE)
+  - Test: 750 samples (243 REAL, 507 FAKE)
+  - Leakage check: 0 cross-split sample overlap.
+
+### Baseline Evaluation (Untouched Test Set, N=750)
+*Evaluated on untouched test split after validation-based model selection.*
+
+| Metric | DistilBERT (Text-only) | ResNet50 (Image-only) | Delta (Text vs Image) |
+| :--- | :--- | :--- | :--- |
+| **Accuracy** | **74.53%** | 70.00% | +4.53% |
+| **Macro F1** | **82.90%** | 80.55% | +2.35% |
+| **Precision** | **75.90%** | 71.69% | +4.21% |
+| **Recall** | 91.32% | **91.91%** | -0.59% |
+| **ROC-AUC** | **81.10%** | 73.76% | +7.34% |
+| **Confusion Matrix** | `[[96, 147], [44, 463]]` | `[[59, 184], [41, 466]]` | — |
+
+*Key finding:* Text modality demonstrates significantly higher discriminative power than the visual modality on Fakeddit (ROC-AUC 81.10% vs 73.76%), motivating the multimodal fusion strategies implemented in Day 3.
+

@@ -1,0 +1,92 @@
+{
+  "model_name": "DistilBERT Baseline (distilbert-base-uncased)",
+  "modality": "text-only",
+  "training_environment": {
+    "device": "cpu",
+    "torch_version": "2.9.1+cpu",
+    "random_seed": 42
+  },
+  "hyperparameters": {
+    "epochs": 1,
+    "batch_size": 32,
+    "learning_rate": 2e-05,
+    "max_sequence_length": 128,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01
+  },
+  "splits": {
+    "train_samples": 3500,
+    "val_samples": 750,
+    "test_samples": 750
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5609,
+      "val_loss": 0.4759,
+      "val_accuracy": 0.7787,
+      "val_f1": 0.848,
+      "val_precision": 0.7915,
+      "val_recall": 0.9132,
+      "val_roc_auc": 0.8384,
+      "epoch_duration_sec": 743.7
+    }
+  ],
+  "best_validation_metrics": {
+    "epoch": 1,
+    "train_loss": 0.5609,
+    "val_loss": 0.4759,
+    "val_accuracy": 0.7787,
+    "val_f1": 0.848,
+    "val_precision": 0.7915,
+    "val_recall": 0.9132,
+    "val_roc_auc": 0.8384,
+    "epoch_duration_sec": 743.7
+  },
+  "test_metrics": {
+    "loss": 0.4989,
+    "accuracy": 0.7453,
+    "precision": 0.759,
+    "recall": 0.9132,
+    "f1_score": 0.829,
+    "roc_auc": 0.811
+  },
+  "confusion_matrix": [
+    [
+      96,
+      147
+    ],
+    [
+      44,
+      463
+    ]
+  ],
+  "classification_report": {
+    "REAL (0)": {
+      "precision": 0.6857142857142857,
+      "recall": 0.3950617283950617,
+      "f1-score": 0.5013054830287206,
+      "support": 243.0
+    },
+    "FAKE (1)": {
+      "precision": 0.759016393442623,
+      "recall": 0.9132149901380671,
+      "f1-score": 0.8290062667860341,
+      "support": 507.0
+    },
+    "accuracy": 0.7453333333333333,
+    "macro avg": {
+      "precision": 0.7223653395784544,
+      "recall": 0.6541383592665644,
+      "f1-score": 0.6651558749073774,
+      "support": 750.0
+    },
+    "weighted avg": {
+      "precision": 0.7352665105386417,
+      "recall": 0.7453333333333333,
+      "f1-score": 0.7228312128486646,
+      "support": 750.0
+    }
+  },
+  "checkpoint_path": "D:\\Veritas-AI\\backend\\models\\distilbert_baseline.pt"
+}

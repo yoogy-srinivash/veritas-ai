@@ -64,6 +64,8 @@ backend/models/*.safetensors
 # Benchmark data (do NOT track thousands of scraped images)
 data/fakeddit/images/*
 !data/fakeddit/images/.gitkeep
+data/fakeddit/raw_images/
+data/fakeddit/raw_images/*
 data/fakeddit/*.tsv
 data/fakeddit/*.zip
 

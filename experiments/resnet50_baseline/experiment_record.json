@@ -1,0 +1,91 @@
+{
+  "model_name": "ResNet50 Baseline (torchvision.models.resnet50)",
+  "modality": "image-only",
+  "training_environment": {
+    "device": "cpu",
+    "torch_version": "2.9.1+cpu",
+    "random_seed": 42
+  },
+  "hyperparameters": {
+    "epochs": 1,
+    "batch_size": 32,
+    "learning_rate": 0.0001,
+    "optimizer": "AdamW",
+    "weight_decay": 0.01
+  },
+  "splits": {
+    "train_samples": 3500,
+    "val_samples": 750,
+    "test_samples": 750
+  },
+  "training_history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.571,
+      "val_loss": 0.5404,
+      "val_accuracy": 0.7227,
+      "val_f1": 0.8216,
+      "val_precision": 0.7269,
+      "val_recall": 0.9448,
+      "val_roc_auc": 0.7731,
+      "epoch_duration_sec": 352.2
+    }
+  ],
+  "best_validation_metrics": {
+    "epoch": 1,
+    "train_loss": 0.571,
+    "val_loss": 0.5404,
+    "val_accuracy": 0.7227,
+    "val_f1": 0.8216,
+    "val_precision": 0.7269,
+    "val_recall": 0.9448,
+    "val_roc_auc": 0.7731,
+    "epoch_duration_sec": 352.2
+  },
+  "test_metrics": {
+    "loss": 0.5475,
+    "accuracy": 0.7,
+    "precision": 0.7169,
+    "recall": 0.9191,
+    "f1_score": 0.8055,
+    "roc_auc": 0.7376
+  },
+  "confusion_matrix": [
+    [
+      59,
+      184
+    ],
+    [
+      41,
+      466
+    ]
+  ],
+  "classification_report": {
+    "REAL (0)": {
+      "precision": 0.59,
+      "recall": 0.24279835390946503,
+      "f1-score": 0.34402332361516036,
+      "support": 243.0
+    },
+    "FAKE (1)": {
+      "precision": 0.7169230769230769,
+      "recall": 0.9191321499013807,
+      "f1-score": 0.8055315471045809,
+      "support": 507.0
+    },
+    "accuracy": 0.7,
+    "macro avg": {
+      "precision": 0.6534615384615384,
+      "recall": 0.5809652519054229,
+      "f1-score": 0.5747774353598706,
+      "support": 750.0
+    },
+    "weighted avg": {
+      "precision": 0.6758,
+      "recall": 0.7,
+      "f1-score": 0.6560028826940086,
+      "support": 750.0
+    }
+  },
+  "checkpoint_path": "D:\\Veritas-AI\\backend\\models\\resnet50_baseline.pt"
+}
